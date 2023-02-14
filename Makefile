@@ -6,7 +6,7 @@ RM = rm -f
 
 SRCS_CLIENT = client.c
 SRCS_SERVER = server.c
-SRCS = utils_client_fd.c
+SRCS = utils_client_fd.c itoa.c
 
 OBJC = ${SRCS:.c=.o}
 OBJC_C = ${SRCS_CLIENT:.c=.o}
