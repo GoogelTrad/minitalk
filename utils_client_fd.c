@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 16:28:44 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/14 15:19:35 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/14 18:39:25 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ void ft_putstr(char *str)
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);
+}
+
+int ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

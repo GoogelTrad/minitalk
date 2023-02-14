@@ -9,5 +9,7 @@
 void    ft_putstr(char *str);
 void	printf_shell(int compteur);
 void	ft_putchar(char c);
+int ft_strlen(char *str);
+void decal_bit(char c, int pid);
 
 #endif
