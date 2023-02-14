@@ -4,8 +4,10 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <signal.h>
 
-void	printf_shell_mv(int compteur);
+void    ft_putstr(char *str);
+void	printf_shell(int compteur);
 void	ft_putchar(char c);
 
 #endif

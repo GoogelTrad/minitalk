@@ -1,27 +1,29 @@
-SRC_CLIENT = client.c
-SRC_SERVEUR = serveur.c
-OBJS = $(SRCS:.c=.o)
-CC = gcc
-FLAGS = -Wall -Wextra -Werror
-NAME_SERVEUR = serveur
 NAME_CLIENT = client
-all: $(NAME_CLIENT) $(NAME_SERVEUR)
+NAME_SERVER = server
+CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+RM = rm -f
 
-$(NAME_CLIENT): $(OBJS)
-	ar rcs $(NAME_SERVEUR) $(OBJS)
+SRCS_CLIENT = client.c
+SRCS_SERVER = server.c
+SRCS = utils_client_fd.c
 
-$(NAME_SERVEUR): $(OBJS)
-	ar rcs $(NAME_SERVEUR) $(OBJS)
+OBJC = ${SRCS:.c=.o}
+OBJC_C = ${SRCS_CLIENT:.c=.o}
+OBJC_S = ${SRCS_SERVER:.c=.o}
 
-%.o: %.c
-	$(CC) $(FLAGS) -I includes/ -c $< -o $(<:.c=.o)
+all: client server
+	
+client: ${OBJC_C} ${OBJC}
+	${CC} ${CFLAGS} ${OBJC_C} ${OBJC} -o ${NAME_CLIENT}
 
+server: ${OBJC_S} ${OBJC}
+	${CC} ${CFLAGS} ${OBJC_S} ${OBJC} -o ${NAME_SERVER}
+	
 clean: 
-	rm -rf $(OBJS)
+	 ${RM} ${OBJC} ${OBJC_C} ${OBJC_S}
 
-fclean: clean 
-	rm -rf $(NAME_SERVEUR)
-	rm -rf $(NAME_CLIENT)
+fclean: clean
+	${RM} ${NAME_CLIENT} ${NAME_SERVER}
 
 re: fclean all
-
