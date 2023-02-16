@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:11:42 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/16 15:04:01 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:25:05 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int verif_pid(int pid)
     i = 8;
     if (pid < 0)
         return (0);
-    while (i)
+    while (i--)
     {
-        if (i-- & (kill(pid, SIGUSR1) == -1))
+        if (kill(pid, SIGUSR1 == -1))
         {
             ft_putstr("Invalid PID\n");
             return (0);

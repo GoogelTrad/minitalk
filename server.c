@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:42:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/16 16:02:27 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:22:45 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void recu(int s)
     static int i = 0;
 
     res |= (s == SIGUSR1);
+    i++;
     if (i < 8)
         res <<= 1;
     if(i == 8)
@@ -33,7 +34,6 @@ void recu(int s)
         i = 0;
         res = 0;
     }
-    i++;
 }
 
 int main(void)
