@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:42:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/16 21:00:52 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:01:41 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void recu(int s, siginfo_t *action, void *param)
         i = 0;
         res = 0;
     }
-    kill(action->si_pid, SIGUSR2);
+    kill(action->si_pid, SIGUSR1);
 }
 
 int main(void)

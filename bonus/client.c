@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:11:42 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/16 21:00:36 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/17 14:59:23 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int main(int argc, char **argv)
     int j;
     
     j = 0;
+    signal(SIGUSR1, receive);
+    signal(SIGUSR2, receive);
     if (argc != 3)
         ft_putstr("Arguments invalide : ./client pid message\n");
     if (!(verif_pid(ft_atoi(argv[1]))))

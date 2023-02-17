@@ -14,5 +14,6 @@ int ft_strlen(char *str);
 void decal_bit(char c, int pid);
 char	*ft_itoa(int n);
 int ft_atoi(char *nptr);
+void receive(int s);
 
 #endif
