@@ -6,49 +6,50 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:42:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/17 15:01:41 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:45:44 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void print_pid()
+void	print_pid(void)
 {
-    ft_putstr("Server start !\n");
-    ft_putstr("PID : ");
-    printf_shell(getpid());
-    ft_putstr("\n");
+	ft_putstr("Server start !\n");
+	ft_putstr("PID : ");
+	printf_shell(getpid());
+	ft_putstr("\n");
 }
 
-void recu(int s, siginfo_t *action, void *param)
+void	recu(int s, siginfo_t *action, void *param)
 {
-    static char res = 0;
-    static int i = 0;
+	static char	res = 0;
+	static int	i = 0;
 
-    (void)param;
-    res |= (s == SIGUSR1);
-    i++;
-    if (i < 8)
-        res <<= 1;
-    if(i == 8)
-    {
-        ft_putchar(res);
-        i = 0;
-        res = 0;
-    }
-    kill(action->si_pid, SIGUSR1);
+	(void)param;
+	res |= s == SIGUSR1;
+	i++;
+	if (i < 8)
+		res <<= 1;
+	if (i == 8)
+	{
+		ft_putchar(res);
+		i = 0;
+		res = 0;
+	}
+	usleep(200);
+	kill(action->si_pid, SIGUSR1);
 }
 
-int main(void)
-{   
-    struct sigaction action;
+int	main(void)
+{
+	struct sigaction	action;
 
-    print_pid();
-    action.sa_flags = SA_SIGINFO;
-    action.sa_sigaction = recu;
-    sigaction(SIGUSR1, &action, NULL);
-    sigaction(SIGUSR2, &action, NULL);
-    while (1)
-        pause();
-    return (0);
+	print_pid();
+	action.sa_flags = SA_SIGINFO;
+	action.sa_sigaction = recu;
+	sigaction(SIGUSR1, &action, 0);
+	sigaction(SIGUSR2, &action, 0);
+	while (1)
+		pause();
+	return (0);
 }

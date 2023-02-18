@@ -6,83 +6,68 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:11:42 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/17 14:59:23 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:44:50 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int verif_pid(int pid)
+void	confirm_recep(int s)
 {
-    int i;
-
-    i = 8;
-    if (pid < 0)
-        return (0);
-    while (i--)
-    {
-        if (kill(pid, SIGUSR1 == -1))
-        {
-            ft_putstr("Invalid PID\n");
-            return (0);
-        }
-    }
-    return (1);
+	if (s == SIGUSR2)
+		ft_putstr("Reçu !\n");
 }
 
-int main(int argc, char **argv)
+int	verif_pid(int pid)
 {
-    int j;
-    
-    j = 0;
-    signal(SIGUSR1, receive);
-    signal(SIGUSR2, receive);
-    if (argc != 3)
-        ft_putstr("Arguments invalide : ./client pid message\n");
-    if (!(verif_pid(ft_atoi(argv[1]))))
-        return (1);
-    while (argv[2][j])
-    {
-        decal_bit(argv[2][j], ft_atoi(argv[1]));
-        j++;
-    }
-    return (0);
+	int	i;
+
+	i = 8;
+	if (pid < 0)
+		return (0);
+	while (i--)
+	{
+		if (kill(pid, SIGUSR1 == -1))
+		{
+			ft_putstr("Invalid PID\n");
+			return (0);
+		}
+	}
+	return (1);
 }
 
-void decal_bit(char c, int pid)
+int	main(int argc, char **argv)
 {
-    int i;
-    
-    i = 8;
-    while (i)
-    {
-        if ((c >> (i - 1)) & 1)
-        {
-            kill(pid, SIGUSR1);
-        }
-        else
-        {
-            kill(pid, SIGUSR2);
-        }
-        i--;
-        pause();
-        usleep(200);
-    }
+	int	j;
+
+	j = 0;
+	signal(SIGUSR1, confirm_recep);
+	signal(SIGUSR2, confirm_recep);
+	if (argc != 3)
+		ft_putstr("Arguments invalide : ./client pid message\n");
+	if (!(verif_pid(ft_atoi(argv[1]))))
+		return (1);
+	while (argv[2][j])
+	{
+		decal_bit(argv[2][j], ft_atoi(argv[1]));
+		j++;
+	}
+	return (0);
 }
 
-void receive(int s)
+void	decal_bit(unsigned char c, int pid)
 {
-    static char res = 0;
-    static int i = 0;
+	int	i;
 
-    res |= (s == SIGUSR1);
-    i++;
-    if (i < 8)
-        res <<= 1;
-    if(i == 8)
-    {
-        ft_putchar(res);
-        i = 0;
-        res = 0;
-    }
+	i = 8;
+	while (i)
+	{
+		if ((c >> (i - 1)) & 1)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		i--;
+		pause();
+		usleep(200);
+	}
 }

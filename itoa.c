@@ -12,9 +12,9 @@
 
 #include "minitalk.h"
 
-static int count_size(int n)
+static int	count_size(int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (n / 10)
@@ -22,7 +22,7 @@ static int count_size(int n)
 		i++;
 		n /= 10;
 	}
-	return(i + 1);
+	return (i + 1);
 }
 
 char	*ft_itoa(int n)
@@ -50,7 +50,7 @@ char	*ft_itoa(int n)
 	return (str);
 }
 
-int ft_atoi(char *nptr)
+int	ft_atoi(char *nptr)
 {
 	int	pair;
 	int	i;
@@ -59,7 +59,7 @@ int ft_atoi(char *nptr)
 	pair = 1;
 	nb = 0;
 	i = 0;
-	while(nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
 	if (nptr[i] == '-')
 	{
