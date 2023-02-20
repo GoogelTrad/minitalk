@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 18:46:04 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/18 18:46:05 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/20 16:46:52 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	decal_bit(unsigned char c, int pid);
 char	*ft_itoa(int n);
 int		ft_atoi(char *nptr);
 void	receive(int s);
+char	*ft_strjoin(char *s1, char s2);
 
 #endif
