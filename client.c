@@ -6,7 +6,7 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 15:11:42 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/18 13:45:24 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/20 13:22:06 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main(int argc, char **argv)
         decal_bit(argv[2][j], ft_atoi(argv[1]));
         j++;
     }
+    decal_bit(argv[2][j], ft_atoi(argv[1]));
     return (0);
 }
 

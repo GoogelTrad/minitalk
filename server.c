@@ -6,11 +6,28 @@
 /*   By: cmichez <cmichez@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 15:42:11 by cmichez           #+#    #+#             */
-/*   Updated: 2023/02/18 18:48:44 by cmichez          ###   ########.fr       */
+/*   Updated: 2023/02/20 13:43:45 by cmichez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+char *free_buff(char *str, char c)
+{
+    char    *temp;
+
+    if (c)
+    {
+        temp = ft_strjoin(str, c);
+        free(str);
+        return (temp);
+    }
+    else
+    {
+        free(str);
+        return (NULL);
+    }
+}
 
 void    print_pid()
 {
@@ -21,6 +38,7 @@ void    print_pid()
 
 void    recu(int s)
 {
+    static char *stock;
     static char res = 0;
     static int  i = 0;
 
@@ -30,7 +48,12 @@ void    recu(int s)
         res <<= 1;
     if (i == 8)
     {
-        ft_putchar(res);
+        if (res == '\0')
+        {
+            ft_putstr(stock);
+            ft_putstr("\n");
+        }
+        stock = free_buff(stock, res);
         i = 0;
         res = 0;
     }
